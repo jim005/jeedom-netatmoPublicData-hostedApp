@@ -67,10 +67,12 @@ if (isset($_GET['refresh']) and !empty($tokens['npd_refresh_token'])) {
 
 // Return Data
 $data =  array();
+header('HTTP/1.0 403 Forbidden');
 $data['state'] = "error"; // by default
 
 if (!empty($tokens)) {
     $data['state'] = "ok";
+    header('HTTP/1.1 200 OK'); 
     $data['npd_access_token'] = $tokens['npd_access_token'];
     $data['npd_refresh_token'] = $tokens['npd_refresh_token'];
     $data['npd_expires_at'] = $tokens['npd_expires_at'];
